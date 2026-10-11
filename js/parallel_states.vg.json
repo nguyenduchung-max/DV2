@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "values": [
+      {"state": "ACT", "level": "At least once a year", "rate": 92.2},
+      {"state": "ACT", "level": "At least once a week", "rate": 78.3},
+      {"state": "ACT", "level": "Three or more times a week", "rate": 59.2},
+      {"state": "NSW", "level": "At least once a year", "rate": 85.4},
+      {"state": "NSW", "level": "At least once a week", "rate": 67.2},
+      {"state": "NSW", "level": "Three or more times a week", "rate": 47.9},
+      {"state": "NT", "level": "At least once a year", "rate": 89.3},
+      {"state": "NT", "level": "At least once a week", "rate": 73.0},
+      {"state": "NT", "level": "Three or more times a week", "rate": 54.4},
+      {"state": "QLD", "level": "At least once a year", "rate": 83.9},
+      {"state": "QLD", "level": "At least once a week", "rate": 67.4},
+      {"state": "QLD", "level": "Three or more times a week", "rate": 49.6},
+      {"state": "SA", "level": "At least once a year", "rate": 84.3},
+      {"state": "SA", "level": "At least once a week", "rate": 67.0},
+      {"state": "SA", "level": "Three or more times a week", "rate": 48.6},
+      {"state": "TAS", "level": "At least once a year", "rate": 87.0},
+      {"state": "TAS", "level": "At least once a week", "rate": 69.4},
+      {"state": "TAS", "level": "Three or more times a week", "rate": 51.3},
+      {"state": "VIC", "level": "At least once a year", "rate": 87.5},
+      {"state": "VIC", "level": "At least once a week", "rate": 70.5},
+      {"state": "VIC", "level": "Three or more times a week", "rate": 51.7},
+      {"state": "WA", "level": "At least once a year", "rate": 86.8},
+      {"state": "WA", "level": "At least once a week", "rate": 70.9},
+      {"state": "WA", "level": "Three or more times a week", "rate": 52.5}
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "datum.state == 'ACT' ? 'ACT' : datum.state == 'NSW' ? 'NSW' : 'Other states'",
+      "as": "highlight"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "level",
+      "type": "ordinal",
+      "title": null,
+      "sort": ["At least once a year", "At least once a week", "Three or more times a week"],
+      "scale": {"padding": 0.2},
+      "axis": {"labelAngle": 0, "domain": false, "ticks": false, "labelFontSize": 12}
+    },
+    "y": {
+      "field": "rate",
+      "type": "quantitative",
+      "title": "% of adults",
+      "scale": {"domain": [40, 100]}
+    },
+    "color": {
+      "field": "highlight",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": ["ACT", "NSW", "Other states"],
+        "range": ["#08519c", "#e6550d", "#bdd7e7"]
+      },
+      "legend": {"orient": "bottom", "direction": "horizontal"}
+    },
+    "detail": {"field": "state", "type": "nominal"}
+  },
+  "layer": [
+    {"mark": {"type": "line", "strokeWidth": 2.5, "opacity": 0.9}},
+    {
+      "mark": {"type": "circle", "size": 70, "opacity": 1},
+      "encoding": {
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "level", "type": "nominal", "title": "Frequency"},
+          {"field": "rate", "type": "quantitative", "title": "% of adults", "format": ".1f"}
+        ]
+      }
+    }
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
+}
