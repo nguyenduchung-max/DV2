@@ -14,6 +14,7 @@
       {"age": "65+", "rate2024": 45.7, "rate2025": 46.0}
     ]
   },
+  "transform": [{"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}],
   "encoding": {
     "y": {"field": "age", "type": "ordinal", "title": "Age group"}
   },
@@ -25,7 +26,7 @@
           "field": "rate2024",
           "type": "quantitative",
           "title": "% of age group",
-          "scale": {"domain": [40, 60]}
+          "scale": {"domain": [40, 66]}
         },
         "x2": {"field": "rate2025"}
       }
@@ -52,12 +53,27 @@
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#e6550d"},
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#6b7076"},
       "encoding": {
         "x": {"field": "rate2025", "type": "quantitative"},
         "text": {"field": "Change", "type": "quantitative", "format": "+.1f"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.age == '15-17'"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "dy": -14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#e6550d"
       },
-      "transform": [{"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}]
+      "encoding": {
+        "x": {"field": "rate2025", "type": "quantitative"},
+        "text": {"value": "Biggest rise of any age group"}
+      }
     }
   ]
 }

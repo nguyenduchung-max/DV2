@@ -84,6 +84,19 @@
           "value": "#333333"
         }
       }
+    },
+    {
+      "transform": [{"filter": "datum.age == '75+' && datum.minutes == '0 min'"}],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -6,
+        "dy": -26,
+        "fontSize": 10,
+        "fontWeight": 600,
+        "color": "#e6550d"
+      },
+      "encoding": {"text": {"value": "28% of over-75s did nothing"}}
     }
   ]
 }
