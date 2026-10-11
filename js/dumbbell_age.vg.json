@@ -75,5 +75,6 @@
         "text": {"value": "Biggest rise of any age group"}
       }
     }
-  ]
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
 }
