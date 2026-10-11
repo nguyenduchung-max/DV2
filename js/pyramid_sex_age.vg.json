@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 300,
+  "data": {
+    "values": [
+      {"sex": "Men", "age": "15-17", "pct": 9.9},
+      {"sex": "Men", "age": "18-24", "pct": 36.4},
+      {"sex": "Men", "age": "25-34", "pct": 31.0},
+      {"sex": "Men", "age": "35-44", "pct": 24.4},
+      {"sex": "Men", "age": "45-54", "pct": 19.1},
+      {"sex": "Men", "age": "55-64", "pct": 15.4},
+      {"sex": "Men", "age": "65-74", "pct": 39.9},
+      {"sex": "Men", "age": "75+", "pct": 31.1},
+      {"sex": "Women", "age": "15-17", "pct": 3.7},
+      {"sex": "Women", "age": "18-24", "pct": 25.7},
+      {"sex": "Women", "age": "25-34", "pct": 23.8},
+      {"sex": "Women", "age": "35-44", "pct": 19.4},
+      {"sex": "Women", "age": "45-54", "pct": 16.0},
+      {"sex": "Women", "age": "55-64", "pct": 16.0},
+      {"sex": "Women", "age": "65-74", "pct": 36.0},
+      {"sex": "Women", "age": "75+", "pct": 24.0}
+    ]
+  },
+  "transform": [
+    {"calculate": "datum.sex == 'Men' ? -datum.pct : datum.pct", "as": "signed"}
+  ],
+  "encoding": {
+    "y": {
+      "field": "age",
+      "type": "ordinal",
+      "title": "Age group",
+      "axis": {"domain": false, "ticks": false}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "height": 16},
+      "encoding": {
+        "x": {
+          "field": "signed",
+          "type": "quantitative",
+          "title": "% meeting the physical activity guidelines",
+          "scale": {"domain": [-45, 45]},
+          "axis": {"labelExpr": "abs(datum.value)", "values": [-40, -30, -20, -10, 0, 10, 20, 30, 40]}
+        },
+        "color": {
+          "field": "sex",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Men", "Women"], "range": ["#08519c", "#e6550d"]},
+          "legend": {"orient": "bottom", "direction": "horizontal"}
+        },
+        "tooltip": [
+          {"field": "sex", "type": "nominal", "title": "Sex"},
+          {"field": "age", "type": "nominal", "title": "Age group"},
+          {"field": "pct", "type": "quantitative", "title": "Meeting guidelines (%)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.sex == 'Men'"}],
+      "mark": {"type": "text", "fontSize": 11, "color": "#5c6368", "align": "right", "dx": -5},
+      "encoding": {
+        "x": {"field": "signed", "type": "quantitative"},
+        "text": {"field": "pct", "type": "quantitative", "format": ".0f"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.sex == 'Women'"}],
+      "mark": {"type": "text", "fontSize": 11, "color": "#5c6368", "align": "left", "dx": 5},
+      "encoding": {
+        "x": {"field": "signed", "type": "quantitative"},
+        "text": {"field": "pct", "type": "quantitative", "format": ".0f"}
+      }
+    }
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
+}

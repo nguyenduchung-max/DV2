@@ -64,7 +64,8 @@
     <!-- section: the maps -->
     <div class="section">
       <div class="pure-g">
-        <div class="pure-u-1-1">          <h2>Where Australians are active</h2>
+        <div class="pure-u-1-1">
+          <h2>Where Australians are active</h2>
           <p>Half of all Australian adults are active at least three times a week, but that national
             average hides a wide spread. The most active jurisdiction sits more than eleven percentage
             points above the least active one. Climate, distance to facilities and the mix of jobs in
@@ -92,13 +93,31 @@
           </div>
         </div>
       </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div class="card card-left">
+            <div id="vis2" class="vis-container"></div>
+            <p class="note">New South Wales and Victoria together account for more than half of all participants, even though neither reaches the national rate.</p>
+            <p class="caption"><strong>Figure 2:</strong> Number of adults who took part in sport or physical activity at least once in 2025, by state.</p>
+          </div>
+        </div>
+        <div class="pure-u-1-2">
+          <div class="card card-right">
+            <div id="vis3" class="vis-container"></div>
+            <p class="note">Western Australia and the Northern Territory improved fastest. Tasmania was the only state to go backwards.</p>
+            <p class="caption"><strong>Figure 3:</strong> Change in the share of adults active three or more times a week, 2024 to 2025.</p>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- end section -->
 
     <!-- section: change over time -->
     <div class="section">
       <div class="pure-g">
-        <div class="pure-u-1-1">          <h2>Rising or falling</h2>
+        <div class="pure-u-1-1">
+          <h2>Rising or falling</h2>
           <p>Participation rose almost everywhere between 2024 and 2025. Western Australia gained the
             most ground of any state, up 4.2 points, while Tasmania was the only one to go backwards.
             The sharpest movement of all, though, was not geographic but generational, and it came from
@@ -109,16 +128,50 @@
       <div class="pure-g">
         <div class="pure-u-1-2">
           <div class="card card-left">
-            <div id="vis2" class="vis-container"></div>
+            <div id="vis4" class="vis-container"></div>
             <p class="note">Teenagers aged 15 to 17 made the biggest jump of any age group, up 8.5 points in a single year.</p>
-            <p class="caption"><strong>Figure 2:</strong> Change in weekly participation by age group, 2024 to 2025.</p>
+            <p class="caption"><strong>Figure 4:</strong> Change in weekly participation by age group, 2024 to 2025.</p>
           </div>
         </div>
         <div class="pure-u-1-2">
           <div class="card card-right">
-            <div id="vis3" class="vis-container"></div>
+            <div id="vis5" class="vis-container"></div>
             <p class="note">More than a quarter of people aged over 75 did no physical activity at all in the week surveyed.</p>
-            <p class="caption"><strong>Figure 3:</strong> Minutes of physical activity in the last week, by age group, 2022.</p>
+            <p class="caption"><strong>Figure 5:</strong> Minutes of physical activity in the last week, by age group, 2022.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end section -->
+
+    <!-- section: men and women -->
+    <div class="section">
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h2>Men, women and the years in between</h2>
+          <p>Playing sport and moving enough for your health are not the same thing. Measured against the
+            national guidelines rather than against participation, the picture changes twice: once
+            between men and women, and once across the working years, when the share of people meeting
+            the guidelines falls for two decades before recovering in retirement.</p>
+        </div>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div class="card card-left">
+            <div id="vis6" class="vis-container"></div>
+            <p class="note">Men out-move women in every age group, and the widest gap of all is among 18 to 24 year olds.</p>
+            <p class="caption"><strong>Figure 6:</strong> Share of men and women meeting the physical activity guidelines, by age group, 2022.</p>
+          </div>
+        </div>
+        <div class="pure-u-1-3">
+          <div class="description description-right">
+            <h3>The mid-life dip</h3>
+            <p>Both men and women are at their least active between 45 and 64, when only about one in six
+              meets the guidelines. The recovery after 65 is striking: among men aged 65 to 74 the share
+              climbs back to 39.9 per cent, the highest of any group in the survey.</p>
+            <p>The gap between the sexes is widest in early adulthood, at almost eleven points, and
+              narrows to nothing by the mid-fifties.</p>
           </div>
         </div>
       </div>
@@ -149,8 +202,11 @@
 
   <script type="text/javascript">
     var specVis1 = "js/map_state_choropleth.vg.json";
-    var specVis2 = "js/dumbbell_age.vg.json";
-    var specVis3 = "js/heatmap_minutes_age.vg.json";
+    var specVis2 = "js/map_state_symbol.vg.json";
+    var specVis3 = "js/map_state_change.vg.json";
+    var specVis4 = "js/dumbbell_age.vg.json";
+    var specVis5 = "js/heatmap_minutes_age.vg.json";
+    var specVis6 = "js/pyramid_sex_age.vg.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -161,6 +217,18 @@
     }).catch(console.error);
 
     vegaEmbed('#vis3', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis5', specVis5, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis6', specVis6, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
