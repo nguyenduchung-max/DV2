@@ -159,3 +159,15 @@ h3 {
 .vis-container .vega-embed {
   display: block;
 }
+
+/* ---------- chart notes ---------- */
+/* A short takeaway for each figure. Kept out of the plotting area so it
+   cannot overlap the marks. */
+
+.note {
+  font-size: 15px;
+  color: #22252a;
+  border-left: 3px solid #e6550d;
+  padding-left: 10px;
+  margin: 12px 0 0 0;
+}

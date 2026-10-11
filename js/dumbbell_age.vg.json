@@ -57,22 +57,6 @@
         "x": {"field": "rate2025", "type": "quantitative"},
         "text": {"field": "Change", "type": "quantitative", "format": "+.1f"}
       }
-    },
-    {
-      "transform": [{"filter": "datum.age == '15-17'"}],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 10,
-        "dy": -14,
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#e6550d"
-      },
-      "encoding": {
-        "x": {"field": "rate2025", "type": "quantitative"},
-        "text": {"value": "Biggest rise of any age group"}
-      }
     }
   ],
   "config": {"font": "Source Sans 3, sans-serif"}
