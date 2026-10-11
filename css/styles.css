@@ -71,7 +71,7 @@ body {
 /* ---------- sections ---------- */
 
 .section {
-  padding: 34px 50px 0 50px;
+  padding: 26px 50px 0 50px;
 }
 
 .section-label {
@@ -104,7 +104,7 @@ h3 {
 .card {
   background-color: #ffffff;
   border-radius: 6px;
-  padding: 18px;
+  padding: 14px;
   box-shadow: 0 1px 3px rgba(16, 30, 54, 0.12);
 }
 
@@ -115,6 +115,7 @@ h3 {
 .caption {
   font-size: 13px;
   color: #6b7076;
+  margin-top: 6px;
   margin-bottom: 0px;
 }
 
@@ -127,7 +128,7 @@ h3 {
 }
 
 .pure-g {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 /* ---------- footer ---------- */
@@ -161,4 +162,11 @@ h3 {
 
 .card-right {
   margin-left: 12px;
+}
+
+/* vega-embed wraps each chart in an inline-block element, which leaves a
+   few pixels of line-height gap underneath. Making it a block removes that. */
+
+.vis-container .vega-embed {
+  display: block;
 }
