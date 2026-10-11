@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Active three or more times a week, by age group",
-  "width": 240,
-  "height": 240,
+  "width": "container",
+  "height": 300,
   "data": {
     "values": [
       {"age": "15-17", "rate2024": 44.6, "rate2025": 53.1},

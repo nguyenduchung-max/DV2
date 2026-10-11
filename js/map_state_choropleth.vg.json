@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Adults active at least three times a week (2025)",
-  "width": 430,
-  "height": 320,
+  "width": "container",
+  "height": 380,
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-134, 0],
