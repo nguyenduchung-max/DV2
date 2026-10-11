@@ -147,6 +147,9 @@ h3 {
 
 .col > .card {
   flex: 1;
+  /* min-width:0 lets the card shrink to its column; without it a wide chart
+     would push the card past the column and over the next one. */
+  min-width: 0;
 }
 
 .card-left {

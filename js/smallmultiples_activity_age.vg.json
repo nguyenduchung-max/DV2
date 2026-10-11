@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {"activity": "Walking", "age": "15-17", "pct": 30.3},
+      {"activity": "Walking", "age": "18-24", "pct": 34.2},
+      {"activity": "Walking", "age": "25-34", "pct": 41.9},
+      {"activity": "Walking", "age": "35-44", "pct": 47.5},
+      {"activity": "Walking", "age": "45-54", "pct": 58.7},
+      {"activity": "Walking", "age": "55-64", "pct": 66.0},
+      {"activity": "Walking", "age": "65+", "pct": 55.8},
+      {"activity": "Fitness/Gym", "age": "15-17", "pct": 37.3},
+      {"activity": "Fitness/Gym", "age": "18-24", "pct": 43.4},
+      {"activity": "Fitness/Gym", "age": "25-34", "pct": 42.1},
+      {"activity": "Fitness/Gym", "age": "35-44", "pct": 36.4},
+      {"activity": "Fitness/Gym", "age": "45-54", "pct": 32.9},
+      {"activity": "Fitness/Gym", "age": "55-64", "pct": 29.5},
+      {"activity": "Fitness/Gym", "age": "65+", "pct": 23.7},
+      {"activity": "Running", "age": "15-17", "pct": 26.6},
+      {"activity": "Running", "age": "18-24", "pct": 26.7},
+      {"activity": "Running", "age": "25-34", "pct": 27.7},
+      {"activity": "Running", "age": "35-44", "pct": 20.9},
+      {"activity": "Running", "age": "45-54", "pct": 15.8},
+      {"activity": "Running", "age": "55-64", "pct": 8.5},
+      {"activity": "Running", "age": "65+", "pct": 1.8},
+      {"activity": "Swimming", "age": "15-17", "pct": 17.6},
+      {"activity": "Swimming", "age": "18-24", "pct": 16.3},
+      {"activity": "Swimming", "age": "25-34", "pct": 16.6},
+      {"activity": "Swimming", "age": "35-44", "pct": 18.3},
+      {"activity": "Swimming", "age": "45-54", "pct": 16.7},
+      {"activity": "Swimming", "age": "55-64", "pct": 16.0},
+      {"activity": "Swimming", "age": "65+", "pct": 9.7},
+      {"activity": "Cycling", "age": "15-17", "pct": 6.7},
+      {"activity": "Cycling", "age": "18-24", "pct": 5.6},
+      {"activity": "Cycling", "age": "25-34", "pct": 7.1},
+      {"activity": "Cycling", "age": "35-44", "pct": 9.3},
+      {"activity": "Cycling", "age": "45-54", "pct": 11.6},
+      {"activity": "Cycling", "age": "55-64", "pct": 12.0},
+      {"activity": "Cycling", "age": "65+", "pct": 5.6},
+      {"activity": "Football/soccer", "age": "15-17", "pct": 17.0},
+      {"activity": "Football/soccer", "age": "18-24", "pct": 12.3},
+      {"activity": "Football/soccer", "age": "25-34", "pct": 9.4},
+      {"activity": "Football/soccer", "age": "35-44", "pct": 6.9},
+      {"activity": "Football/soccer", "age": "45-54", "pct": 3.3},
+      {"activity": "Football/soccer", "age": "55-64", "pct": 1.0},
+      {"activity": "Football/soccer", "age": "65+", "pct": 0.1}
+    ]
+  },
+  "facet": {
+    "field": "activity",
+    "type": "nominal",
+    "title": null,
+    "sort": ["Walking", "Fitness/Gym", "Running", "Swimming", "Cycling", "Football/soccer"],
+    "header": {"labelFontSize": 13, "labelFontWeight": 600, "labelAnchor": "start"}
+  },
+  "columns": 2,
+  "spec": {
+    "width": 150,
+    "height": 80,
+    "encoding": {
+      "x": {
+        "field": "age",
+        "type": "ordinal",
+        "title": null,
+        "sort": ["15-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"],
+        "axis": {"labelAngle": -45, "labelFontSize": 9, "values": ["15-17", "35-44", "65+"]}
+      },
+      "y": {
+        "field": "pct",
+        "type": "quantitative",
+        "title": "% of age group",
+        "scale": {"domain": [0, 70]},
+        "axis": {"tickCount": 4, "labelFontSize": 9}
+      }
+    },
+    "layer": [
+      {
+        "mark": {"type": "area", "opacity": 0.18, "color": "#2171b5"}
+      },
+      {
+        "mark": {"type": "line", "strokeWidth": 2.5, "color": "#08519c"}
+      },
+      {
+        "mark": {"type": "circle", "size": 45, "color": "#08519c"},
+        "encoding": {
+          "tooltip": [
+            {"field": "activity", "type": "nominal", "title": "Activity"},
+            {"field": "age", "type": "nominal", "title": "Age group"},
+            {"field": "pct", "type": "quantitative", "title": "% of age group", "format": ".1f"}
+          ]
+        }
+      }
+    ]
+  },
+  "config": {"font": "Source Sans 3, sans-serif"}
+}
