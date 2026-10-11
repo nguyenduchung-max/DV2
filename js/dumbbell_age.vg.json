@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Active three or more times a week, by age group",
-  "width": 280,
+  "width": 270,
   "height": 240,
   "data": {
     "values": [
@@ -51,7 +51,7 @@
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#08519c"},
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#e6550d"},
       "encoding": {
         "x": {"field": "rate2025", "type": "quantitative"},
         "text": {"field": "Change", "type": "quantitative", "format": "+.1f"}
