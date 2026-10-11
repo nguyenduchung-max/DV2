@@ -18,17 +18,17 @@
     {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}
   ],
   "encoding": {
-    "x": {"field": "col", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.08}},
-    "y": {"field": "row", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.08}}
+    "x": {"field": "col", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.12}},
+    "y": {"field": "row", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.12}}
   },
   "layer": [
     {
-      "mark": {"type": "rect", "cornerRadius": 4, "stroke": "white", "strokeWidth": 3},
+      "mark": {"type": "square", "size": 7200, "cornerRadius": 5, "stroke": "white", "strokeWidth": 2},
       "encoding": {
         "color": {
           "field": "Change",
           "type": "quantitative",
-          "title": "Change in percentage points, 2024 to 2025",
+          "title": "Change in points, 2024 to 2025",
           "legend": {"orient": "bottom", "direction": "horizontal"},
           "scale": {
             "type": "threshold",
@@ -45,7 +45,7 @@
       }
     },
     {
-      "mark": {"type": "text", "dy": -10, "fontSize": 15, "fontWeight": 600},
+      "mark": {"type": "text", "dy": -9, "fontSize": 16, "fontWeight": 700},
       "encoding": {
         "text": {"field": "state", "type": "nominal"},
         "color": {
@@ -55,7 +55,7 @@
       }
     },
     {
-      "mark": {"type": "text", "dy": 10, "fontSize": 13},
+      "mark": {"type": "text", "dy": 13, "fontSize": 13},
       "encoding": {
         "text": {"field": "Change", "type": "quantitative", "format": "+.1f"},
         "color": {
