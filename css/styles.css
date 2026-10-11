@@ -137,12 +137,16 @@ h3 {
 }
 
 /* ---------- card spacing ---------- */
-/* pure.css lays .pure-g out with flexbox, so each column stretches to the
-   height of the tallest one. height:100% makes the card fill that height,
-   which keeps the bottoms of two cards in the same row aligned. */
+/* pure.css lays .pure-g out with flexbox, so every column in a row is already
+   stretched to the height of the tallest one. Making the column a flex box and
+   letting the card grow fills that height without the card overflowing its row. */
 
-.card {
-  height: 100%;
+.col {
+  display: flex;
+}
+
+.col > .card {
+  flex: 1;
 }
 
 .card-left {
