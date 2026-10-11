@@ -98,5 +98,6 @@
       },
       "encoding": {"text": {"value": "28% of over-75s did nothing"}}
     }
-  ]
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
 }

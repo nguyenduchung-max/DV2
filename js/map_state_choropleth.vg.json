@@ -104,5 +104,6 @@
         "latitude": {"field": "latitude", "type": "quantitative"}
       }
     }
-  ]
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
 }
