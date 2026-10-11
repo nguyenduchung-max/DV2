@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 330,
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-134, 0],
+    "parallels": [-18, -36]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#eff3ff", "stroke": "white", "strokeWidth": 1}
+    },
+    {
+      "data": {
+        "values": [
+          {"state": "New South Wales", "longitude": 146.9, "latitude": -32.2, "people": 6028038},
+          {"state": "Victoria", "longitude": 144.8, "latitude": -36.9, "people": 5082762},
+          {"state": "Queensland", "longitude": 144.4, "latitude": -22.5, "people": 3882805},
+          {"state": "Western Australia", "longitude": 122.3, "latitude": -25.3, "people": 2143227},
+          {"state": "South Australia", "longitude": 135.8, "latitude": -30.1, "people": 1332909},
+          {"state": "Tasmania", "longitude": 146.6, "latitude": -42.0, "people": 420327},
+          {"state": "Australian Capital Territory", "longitude": 149.0, "latitude": -35.5, "people": 367094},
+          {"state": "Northern Territory", "longitude": 133.4, "latitude": -19.5, "people": 186157}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "color": "#2171b5",
+        "opacity": 0.65,
+        "stroke": "#08519c",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {
+          "field": "people",
+          "type": "quantitative",
+          "title": "Participants",
+          "scale": {
+            "type": "threshold",
+            "domain": [500000, 1500000, 3000000, 5000000],
+            "range": [80, 250, 600, 1100, 1800]
+          },
+          "legend": {"orient": "bottom", "direction": "horizontal", "format": ".1s"}
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "people", "type": "quantitative", "title": "Participants", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
+}
