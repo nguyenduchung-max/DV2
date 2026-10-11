@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Minutes of physical activity in the last week (2022)",
-  "width": 215,
+  "width": 206,
   "height": 200,
   "data": {
     "values": [
@@ -44,7 +44,7 @@
       "field": "age",
       "type": "ordinal",
       "title": "Age group",
-      "axis": {"labelAngle": 0}
+      "axis": {"labelAngle": -45}
     },
     "y": {
       "field": "minutes",
@@ -61,6 +61,7 @@
           "field": "pct",
           "type": "quantitative",
           "title": "% of age group",
+          "legend": {"orient": "bottom", "direction": "horizontal"},
           "scale": {
             "type": "threshold",
             "domain": [15, 25, 40, 55],

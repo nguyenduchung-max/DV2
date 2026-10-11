@@ -144,3 +144,20 @@ h3 {
 .small-font {
   font-size: 14px;
 }
+
+/* ---------- card spacing ---------- */
+/* pure.css lays .pure-g out with flexbox, so each column stretches to the
+   height of the tallest one. height:100% makes the card fill that height,
+   which keeps the bottoms of two cards in the same row aligned. */
+
+.card {
+  height: 100%;
+}
+
+.card-left {
+  margin-right: 12px;
+}
+
+.card-right {
+  margin-left: 12px;
+}
