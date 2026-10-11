@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 330,
+  "data": {
+    "values": [
+      {"state": "NT", "name": "Northern Territory", "col": 1, "row": 0, "rate2024": 50.4, "rate2025": 54.4},
+      {"state": "QLD", "name": "Queensland", "col": 2, "row": 0, "rate2024": 47.2, "rate2025": 49.6},
+      {"state": "WA", "name": "Western Australia", "col": 0, "row": 1, "rate2024": 48.3, "rate2025": 52.5},
+      {"state": "SA", "name": "South Australia", "col": 1, "row": 1, "rate2024": 46.1, "rate2025": 48.6},
+      {"state": "NSW", "name": "New South Wales", "col": 2, "row": 1, "rate2024": 47.3, "rate2025": 47.9},
+      {"state": "ACT", "name": "Australian Capital Territory", "col": 3, "row": 1, "rate2024": 58.2, "rate2025": 59.2},
+      {"state": "VIC", "name": "Victoria", "col": 2, "row": 2, "rate2024": 49.7, "rate2025": 51.7},
+      {"state": "TAS", "name": "Tasmania", "col": 2, "row": 3, "rate2024": 53.3, "rate2025": 51.3}
+    ]
+  },
+  "transform": [
+    {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}
+  ],
+  "encoding": {
+    "x": {"field": "col", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.08}},
+    "y": {"field": "row", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.08}}
+  },
+  "layer": [
+    {
+      "mark": {"type": "rect", "cornerRadius": 4, "stroke": "white", "strokeWidth": 3},
+      "encoding": {
+        "color": {
+          "field": "Change",
+          "type": "quantitative",
+          "title": "Change in percentage points, 2024 to 2025",
+          "legend": {"orient": "bottom", "direction": "horizontal"},
+          "scale": {
+            "type": "threshold",
+            "domain": [0, 1, 2.5, 4],
+            "range": ["#e6550d", "#eff3ff", "#bdd7e7", "#6baed6", "#08519c"]
+          }
+        },
+        "tooltip": [
+          {"field": "name", "type": "nominal", "title": "State"},
+          {"field": "rate2024", "type": "quantitative", "title": "2024 (%)", "format": ".1f"},
+          {"field": "rate2025", "type": "quantitative", "title": "2025 (%)", "format": ".1f"},
+          {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -10, "fontSize": 15, "fontWeight": 600},
+      "encoding": {
+        "text": {"field": "state", "type": "nominal"},
+        "color": {
+          "condition": {"test": "datum.rate2025 - datum.rate2024 >= 2.5", "value": "white"},
+          "value": "#22252a"
+        }
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": 10, "fontSize": 13},
+      "encoding": {
+        "text": {"field": "Change", "type": "quantitative", "format": "+.1f"},
+        "color": {
+          "condition": {"test": "datum.rate2025 - datum.rate2024 >= 2.5", "value": "white"},
+          "value": "#5c6368"
+        }
+      }
+    }
+  ],
+  "config": {"font": "Source Sans 3, sans-serif", "view": {"stroke": null}}
+}
