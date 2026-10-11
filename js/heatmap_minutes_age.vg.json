@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Minutes of physical activity in the last week (2022)",
-  "width": 206,
-  "height": 200,
+  "width": "container",
+  "height": 260,
   "data": {
     "values": [
       {"age": "15-17", "minutes": "0 min", "pct": 8.8},
