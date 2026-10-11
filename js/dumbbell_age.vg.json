@@ -1,60 +1,62 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Teenagers made the biggest jump",
-    "subtitle": "Adults active at least 3 times a week, by age group: 2024 vs 2025 (%)",
-    "anchor": "start"
-  },
-  "width": 460,
-  "height": 260,
+  "title": "Active three or more times a week, by age group",
+  "width": 280,
+  "height": 240,
   "data": {
     "values": [
-      {"age": "15–17", "y2024": 44.6, "y2025": 53.1},
-      {"age": "18–24", "y2024": 46.9, "y2025": 48.9},
-      {"age": "25–34", "y2024": 48.7, "y2025": 50.1},
-      {"age": "35–44", "y2024": 46.0, "y2025": 47.6},
-      {"age": "45–54", "y2024": 50.9, "y2025": 52.6},
-      {"age": "55–64", "y2024": 53.7, "y2025": 56.9},
-      {"age": "65+", "y2024": 45.7, "y2025": 46.0}
+      {"age": "15-17", "rate2024": 44.6, "rate2025": 53.1},
+      {"age": "18-24", "rate2024": 46.9, "rate2025": 48.9},
+      {"age": "25-34", "rate2024": 48.7, "rate2025": 50.1},
+      {"age": "35-44", "rate2024": 46.0, "rate2025": 47.6},
+      {"age": "45-54", "rate2024": 50.9, "rate2025": 52.6},
+      {"age": "55-64", "rate2024": 53.7, "rate2025": 56.9},
+      {"age": "65+", "rate2024": 45.7, "rate2025": 46.0}
     ]
   },
   "encoding": {
-    "y": {"field": "age", "type": "ordinal", "title": "Age group", "sort": null}
+    "y": {"field": "age", "type": "ordinal", "title": "Age group"}
   },
   "layer": [
     {
-      "mark": {"type": "rule", "color": "#bbb", "strokeWidth": 3},
+      "mark": {"type": "rule", "color": "#bbbbbb", "strokeWidth": 3},
       "encoding": {
-        "x": {"field": "y2024", "type": "quantitative", "title": "% of age group", "scale": {"domain": [40, 60]}},
-        "x2": {"field": "y2025"}
+        "x": {
+          "field": "rate2024",
+          "type": "quantitative",
+          "title": "% of age group",
+          "scale": {"domain": [40, 60]}
+        },
+        "x2": {"field": "rate2025"}
       }
     },
     {
-      "transform": [{"fold": ["y2024", "y2025"], "as": ["year", "rate"]},
-                    {"calculate": "replace(datum.year, 'y', '')", "as": "year"}],
+      "transform": [
+        {"fold": ["rate2024", "rate2025"], "as": ["Year", "Rate"]},
+        {"calculate": "replace(datum.Year, 'rate', '')", "as": "Year"}
+      ],
       "mark": {"type": "circle", "size": 120, "opacity": 1},
       "encoding": {
-        "x": {"field": "rate", "type": "quantitative"},
+        "x": {"field": "Rate", "type": "quantitative"},
         "color": {
-          "field": "year", "type": "nominal", "title": "Year",
-          "scale": {"domain": ["2024", "2025"], "range": ["#9ecae1", "#08519c"]},
-          "legend": {"orient": "top"}
+          "field": "Year",
+          "type": "nominal",
+          "scale": {"domain": ["2024", "2025"], "range": ["#9ecae1", "#08519c"]}
         },
         "tooltip": [
-          {"field": "age", "title": "Age"},
-          {"field": "year", "title": "Year"},
-          {"field": "rate", "title": "Rate (%)", "format": ".1f"}
+          {"field": "age", "type": "nominal", "title": "Age group"},
+          {"field": "Year", "type": "nominal"},
+          {"field": "Rate", "type": "quantitative", "title": "Rate (%)", "format": ".1f"}
         ]
       }
     },
     {
-      "transform": [{"calculate": "datum.y2025 - datum.y2024", "as": "diff"}],
       "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 11, "color": "#08519c"},
       "encoding": {
-        "x": {"field": "y2025", "type": "quantitative"},
-        "text": {"field": "diff", "format": "+.1f"}
-      }
+        "x": {"field": "rate2025", "type": "quantitative"},
+        "text": {"field": "Change", "type": "quantitative", "format": "+.1f"}
+      },
+      "transform": [{"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}]
     }
-  ],
-  "config": {"view": {"stroke": null}}
+  ]
 }
