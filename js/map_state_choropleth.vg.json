@@ -8,50 +8,101 @@
     "rotate": [-134, 0],
     "parallels": [-18, -36]
   },
-  "data": {
-    "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
-    "format": {"type": "json", "property": "features"}
-  },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.STATE_NAME",
-      "from": {
-        "data": {
-          "values": [
-            {"state": "Australian Capital Territory", "rate2024": 58.2, "rate2025": 59.2},
-            {"state": "New South Wales", "rate2024": 47.3, "rate2025": 47.9},
-            {"state": "Northern Territory", "rate2024": 50.4, "rate2025": 54.4},
-            {"state": "Queensland", "rate2024": 47.2, "rate2025": 49.6},
-            {"state": "South Australia", "rate2024": 46.1, "rate2025": 48.6},
-            {"state": "Tasmania", "rate2024": 53.3, "rate2025": 51.3},
-            {"state": "Victoria", "rate2024": 49.7, "rate2025": 51.7},
-            {"state": "Western Australia", "rate2024": 48.3, "rate2025": 52.5}
-          ]
+      "data": {
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "values": [
+                {"state": "Australian Capital Territory", "rate2024": 58.2, "rate2025": 59.2},
+                {"state": "New South Wales", "rate2024": 47.3, "rate2025": 47.9},
+                {"state": "Northern Territory", "rate2024": 50.4, "rate2025": 54.4},
+                {"state": "Queensland", "rate2024": 47.2, "rate2025": 49.6},
+                {"state": "South Australia", "rate2024": 46.1, "rate2025": 48.6},
+                {"state": "Tasmania", "rate2024": 53.3, "rate2025": 51.3},
+                {"state": "Victoria", "rate2024": 49.7, "rate2025": 51.7},
+                {"state": "Western Australia", "rate2024": 48.3, "rate2025": 52.5}
+              ]
+            },
+            "key": "state",
+            "fields": ["rate2024", "rate2025"]
+          }
         },
-        "key": "state",
-        "fields": ["rate2024", "rate2025"]
+        {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+      "encoding": {
+        "color": {
+          "field": "rate2025",
+          "type": "quantitative",
+          "title": "% active 3+ times a week",
+          "legend": {"orient": "bottom", "direction": "horizontal"},
+          "scale": {
+            "type": "threshold",
+            "domain": [48, 50, 52, 55],
+            "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+          }
+        },
+        "tooltip": [
+          {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
+          {"field": "rate2025", "type": "quantitative", "title": "2025 (%)", "format": ".1f"},
+          {"field": "rate2024", "type": "quantitative", "title": "2024 (%)", "format": ".1f"},
+          {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
+        ]
       }
     },
-    {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}
-  ],
-  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
-  "encoding": {
-    "color": {
-      "field": "rate2025",
-      "type": "quantitative",
-      "title": "% active 3+ times a week",
-      "legend": {"orient": "bottom", "direction": "horizontal"},
-      "scale": {
-        "type": "threshold",
-        "domain": [48, 50, 52, 55],
-        "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+    {
+      "data": {
+        "values": [
+          {"longitude": 149.1, "latitude": -35.3},
+          {"longitude": 151.2, "latitude": -33.9}
+        ]
+      },
+      "mark": {"type": "circle", "size": 45, "color": "#e6550d"},
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"}
       }
     },
-    "tooltip": [
-      {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
-      {"field": "rate2025", "type": "quantitative", "title": "2025 (%)", "format": ".1f"},
-      {"field": "rate2024", "type": "quantitative", "title": "2024 (%)", "format": ".1f"},
-      {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
-    ]
-  }
+    {
+      "data": {"values": [{"longitude": 149.1, "latitude": -35.3}]},
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -9,
+        "dy": 12,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#e6550d",
+        "text": "ACT 59.2%, highest"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {"values": [{"longitude": 151.2, "latitude": -33.9}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "dy": -10,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "color": "#e6550d",
+        "text": "NSW 47.9%, lowest"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"}
+      }
+    }
+  ]
 }
