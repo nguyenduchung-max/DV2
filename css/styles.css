@@ -1,47 +1,120 @@
+/* FIT3179 Data Visualisation 2 — How Australia Moves */
+/* Colour palette: ColorBrewer Blues, accent from ColorBrewer Oranges */
+
 body * {
   font-family: 'Source Sans 3', sans-serif;
 }
 
-h1 {
+body {
+  background-color: #eef0f3;
+  color: #22252a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.page {
+  width: 850px;
+  background-color: #eef0f3;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+/* ---------- hero banner ---------- */
+
+.hero {
+  background-color: #08519c;
+  color: #ffffff;
+  padding: 40px 50px 34px 50px;
+}
+
+.hero h1 {
   font-weight: 900;
-  font-size: 40px;
+  font-size: 44px;
   letter-spacing: -0.02em;
-  margin-bottom: 8px;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+}
+
+.hero .standfirst {
+  font-size: 19px;
+  color: #cfe0f3;
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* ---------- KPI strip ---------- */
+
+.kpi {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  padding: 14px 16px;
+  margin-top: 26px;
+}
+
+.kpi .value {
+  display: block;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.kpi .label {
+  display: block;
+  font-size: 13px;
+  color: #cfe0f3;
+  margin-top: 2px;
+}
+
+/* ---------- sections ---------- */
+
+.section {
+  padding: 34px 50px 0 50px;
+}
+
+.section-label {
+  display: inline-block;
+  background-color: #eff3ff;
+  color: #08519c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 6px;
 }
 
 h2 {
   font-weight: 600;
-  font-size: 26px;
-  border-top: 1px solid #d8d8d8;
-  padding-top: 20px;
+  font-size: 27px;
+  margin: 0 0 8px 0;
 }
 
 h3 {
   font-weight: 600;
   font-size: 18px;
+  margin-top: 0px;
 }
 
-body {
-  background-color: lightgray;
-  color: #22252a;
-  line-height: 1.6;
-}
+/* ---------- chart cards ---------- */
 
-.page {
-  width: 850px;
-  background-color: white;
-  margin: auto;
-  padding: 50px;
-  padding-top: 35px;
+.card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(16, 30, 54, 0.12);
 }
 
 .vis-container {
   width: 100%;
 }
 
-.description h2,
-h1 {
-  margin-top: 0px;
+.caption {
+  font-size: 13px;
+  color: #6b7076;
+  margin-bottom: 0px;
 }
 
 .description-right {
@@ -53,28 +126,21 @@ h1 {
 }
 
 .pure-g {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  padding: 20px 50px 0 50px;
+  font-size: 14px;
+  color: #5c6368;
+}
+
+.footer a {
+  color: #08519c;
 }
 
 .small-font {
   font-size: 14px;
-}
-
-.standfirst {
-  font-size: 20px;
-  color: #52595f;
-  margin-top: 0px;
-}
-
-.byline {
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #6b7076;
-}
-
-.caption {
-  font-size: 13px;
-  color: #6b7076;
-  margin-top: 8px;
 }
