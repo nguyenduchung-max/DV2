@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Australia Moves — FIT3179 Data Visualisation 2</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>How Australia Moves</h1>
+    <p class="standfirst">
+      Australians play more sport than almost any country — yet only one in four adults
+      meets the national physical activity guidelines. This is where the gap sits.
+    </p>
+    <p class="byline">Nguyen Duc Hung &middot; FIT3179 Data Visualisation 2 &middot; October 2026</p>
+  </div>
+</header>
+
+<!-- ============ SECTION 1: the national picture ============ -->
+<section id="overview">
+  <div class="wrap">
+    <h2>1. Where the country stands</h2>
+    <p class="lede">TODO: one short paragraph introducing the story.</p>
+
+    <div class="grid-2">
+      <div>
+        <div class="chart" id="vis-map-state"></div>
+        <p class="caption">
+          Figure 1. Adults active at least three times a week, by state, 2025.
+          Source: AusPlay, Australian Sports Commission.
+        </p>
+      </div>
+      <div>
+        <h3>Reading this map</h3>
+        <p>TODO: annotation text — what the reader should notice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2: who is moving ============ -->
+<section id="age">
+  <div class="wrap">
+    <h2>2. Who is moving, and who is not</h2>
+    <p class="lede">TODO: short paragraph.</p>
+
+    <div class="grid-2">
+      <div>
+        <div class="chart" id="vis-dumbbell-age"></div>
+        <p class="caption">
+          Figure 2. Change in weekly participation by age group, 2024 to 2025.
+          Source: AusPlay, Australian Sports Commission.
+        </p>
+      </div>
+      <div>
+        <div class="chart" id="vis-heatmap-minutes"></div>
+        <p class="caption">
+          Figure 3. Minutes of physical activity in the last week, by age group, 2022.
+          Source: ABS National Health Survey 2022.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLACEHOLDER for remaining charts ============ -->
+<section id="todo">
+  <div class="wrap">
+    <h2>3. TODO — remaining sections</h2>
+    <p class="lede">
+      Minimum ten charts and at least three map idioms are required.
+      Currently built: 3 charts, 1 map.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Data sources</h2>
+    <ul>
+      <li>
+        Australian Sports Commission, <em>AusPlay National Data Tables, January–December 2025</em>,
+        released 30 April 2026.
+        <a href="https://www.ausport.gov.au/clearinghouse/research/ausplay/results">ausport.gov.au</a>
+      </li>
+      <li>
+        Australian Bureau of Statistics, <em>Physical Activity, 2022</em>
+        (National Health Survey 2022), released 15 December 2023. Licensed CC BY 4.0.
+        <a href="https://www.abs.gov.au/statistics/health/health-conditions-and-risks/physical-activity/latest-release">abs.gov.au</a>
+      </li>
+      <li>TODO: state boundary file — ABS ASGS Edition 3, simplified to TopoJSON.</li>
+    </ul>
+    <p>
+      Built with Vega-Lite. Chart specifications are in the
+      <a href="https://github.com/nguyenduchung-max/DV2/tree/main/js">js folder</a> of this repository.
+    </p>
+    <p>TODO: acknowledge any use of generative AI here, as required by the assignment brief.</p>
+  </div>
+</footer>
+
+<script>
+  const charts = [
+    ["#vis-map-state",        "js/map_state_choropleth.vg.json"],
+    ["#vis-dumbbell-age",     "js/dumbbell_age.vg.json"],
+    ["#vis-heatmap-minutes",  "js/heatmap_minutes_age.vg.json"]
+  ];
+
+  charts.forEach(([el, spec]) => {
+    vegaEmbed(el, spec, {actions: false})
+      .catch(err => { document.querySelector(el).textContent = "Chart failed to load: " + err; });
+  });
+</script>
+
+</body>
+</html>
