@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 230,
+  "data": {
+    "values": [
+      {"activity": "Walking (recreational)", "pct": 50.2},
+      {"activity": "Fitness/Gym", "pct": 34.1},
+      {"activity": "Bush walking", "pct": 17.47},
+      {"activity": "Running/jogging", "pct": 16.53},
+      {"activity": "Swimming", "pct": 15.39},
+      {"activity": "Cycling", "pct": 8.29},
+      {"activity": "Pilates", "pct": 7.18},
+      {"activity": "Football/soccer", "pct": 5.62},
+      {"activity": "Yoga", "pct": 5.07},
+      {"activity": "Tennis", "pct": 4.94},
+      {"activity": "Golf", "pct": 4.56},
+      {"activity": "Basketball", "pct": 4.53},
+      {"activity": "Cricket", "pct": 2.49},
+      {"activity": "Australian football", "pct": 2.42},
+      {"activity": "Netball", "pct": 2.11},
+      {"activity": "Badminton", "pct": 1.89},
+      {"activity": "Table tennis", "pct": 1.79},
+      {"activity": "Dancing (recreational)", "pct": 1.63},
+      {"activity": "Surfing", "pct": 1.38},
+      {"activity": "Athletics, track and field", "pct": 1.32},
+      {"activity": "Volleyball", "pct": 1.31},
+      {"activity": "Pickleball/padel", "pct": 1.31},
+      {"activity": "DanceSport", "pct": 1.12},
+      {"activity": "Fishing (recreational)", "pct": 1.07},
+      {"activity": "Canoeing/kayaking", "pct": 1.0},
+      {"activity": "Weight lifting", "pct": 0.98},
+      {"activity": "Boxing", "pct": 0.85},
+      {"activity": "Bowls", "pct": 0.83},
+      {"activity": "Crossfit/functional fitness", "pct": 0.65},
+      {"activity": "Hockey", "pct": 0.51},
+      {"activity": "Gymnastics", "pct": 0.54},
+      {"activity": "Equestrian", "pct": 0.44},
+      {"activity": "Baseball", "pct": 0.31}
+    ]
+  },
+  "transform": [
+    {"calculate": "random()", "as": "jitter"},
+    {"calculate": "datum.pct >= 15 ? 'Top five' : 'Everything else'", "as": "group"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "pct",
+      "type": "quantitative",
+      "title": "% of adults taking part at least once a year (log scale)",
+      "scale": {"type": "log", "domain": [0.2, 70]},
+      "axis": {"tickCount": 5, "format": ".2~f"}
+    },
+    "y": {
+      "field": "jitter",
+      "type": "quantitative",
+      "axis": null,
+      "scale": {"domain": [-0.4, 1.4]}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "circle", "size": 180, "opacity": 0.8, "stroke": "white", "strokeWidth": 1},
+      "encoding": {
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Top five", "Everything else"], "range": ["#08519c", "#9ecae1"]},
+          "legend": {"orient": "bottom", "direction": "horizontal"}
+        },
+        "tooltip": [
+          {"field": "activity", "type": "nominal", "title": "Activity"},
+          {"field": "pct", "type": "quantitative", "title": "% of adults", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.pct >= 15"}],
+      "mark": {"type": "text", "align": "center", "dy": -16, "fontSize": 11, "color": "#22252a"},
+      "encoding": {
+        "text": {"field": "activity", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
+}

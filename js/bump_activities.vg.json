@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 320,
+  "data": {
+    "values": [
+      {"activity": "Walking (recreational)", "year": "2024", "rank": 1, "pct": 49.93},
+      {"activity": "Walking (recreational)", "year": "2025", "rank": 1, "pct": 50.2},
+      {"activity": "Fitness/Gym", "year": "2024", "rank": 2, "pct": 30.33},
+      {"activity": "Fitness/Gym", "year": "2025", "rank": 2, "pct": 34.1},
+      {"activity": "Bush walking", "year": "2024", "rank": 3, "pct": 16.86},
+      {"activity": "Bush walking", "year": "2025", "rank": 3, "pct": 17.47},
+      {"activity": "Running/jogging", "year": "2024", "rank": 4, "pct": 15.99},
+      {"activity": "Running/jogging", "year": "2025", "rank": 4, "pct": 16.53},
+      {"activity": "Swimming", "year": "2024", "rank": 5, "pct": 15.19},
+      {"activity": "Swimming", "year": "2025", "rank": 5, "pct": 15.39},
+      {"activity": "Cycling", "year": "2024", "rank": 6, "pct": 8.59},
+      {"activity": "Cycling", "year": "2025", "rank": 6, "pct": 8.29},
+      {"activity": "Pilates", "year": "2024", "rank": 7, "pct": 5.79},
+      {"activity": "Pilates", "year": "2025", "rank": 7, "pct": 7.18},
+      {"activity": "Football/soccer", "year": "2024", "rank": 8, "pct": 5.44},
+      {"activity": "Football/soccer", "year": "2025", "rank": 8, "pct": 5.62},
+      {"activity": "Tennis", "year": "2024", "rank": 9, "pct": 5.08},
+      {"activity": "Tennis", "year": "2025", "rank": 10, "pct": 4.94},
+      {"activity": "Yoga", "year": "2024", "rank": 10, "pct": 4.98},
+      {"activity": "Yoga", "year": "2025", "rank": 9, "pct": 5.07},
+      {"activity": "Basketball", "year": "2024", "rank": 11, "pct": 4.73},
+      {"activity": "Basketball", "year": "2025", "rank": 12, "pct": 4.53},
+      {"activity": "Golf", "year": "2024", "rank": 12, "pct": 4.69},
+      {"activity": "Golf", "year": "2025", "rank": 11, "pct": 4.56}
+    ]
+  },
+  "transform": [
+    {
+      "calculate": "datum.activity == 'Yoga' || datum.activity == 'Tennis' || datum.activity == 'Golf' || datum.activity == 'Basketball' ? 'Changed places' : 'Held its rank'",
+      "as": "movement"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "scale": {"padding": 0.5},
+      "axis": {"labelAngle": 0, "domain": false, "ticks": false, "labelFontSize": 13}
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank",
+      "scale": {"domain": [0.5, 12.5], "reverse": true},
+      "axis": {"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "grid": false}
+    },
+    "color": {
+      "field": "movement",
+      "type": "nominal",
+      "title": null,
+      "scale": {"domain": ["Changed places", "Held its rank"], "range": ["#e6550d", "#9ecae1"]},
+      "legend": {"orient": "bottom", "direction": "horizontal"}
+    },
+    "detail": {"field": "activity", "type": "nominal"}
+  },
+  "layer": [
+    {"mark": {"type": "line", "strokeWidth": 2.5}},
+    {
+      "mark": {"type": "circle", "size": 110, "opacity": 1},
+      "encoding": {
+        "tooltip": [
+          {"field": "activity", "type": "nominal", "title": "Activity"},
+          {"field": "year", "type": "nominal", "title": "Year"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"},
+          {"field": "pct", "type": "quantitative", "title": "% of adults", "format": ".2f"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.year == '2025'"}],
+      "mark": {"type": "text", "align": "left", "dx": 12, "fontSize": 11, "color": "#22252a"},
+      "encoding": {"text": {"field": "activity", "type": "nominal"}}
+    }
+  ],
+  "config": {"font": "Source Sans 3, sans-serif"}
+}
