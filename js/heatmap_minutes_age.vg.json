@@ -1,73 +1,88 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Activity drops sharply after 65",
-    "subtitle": "Minutes of physical activity in the last week, by age group, 2022 (% of each age group)",
-    "anchor": "start"
-  },
-  "width": 460,
+  "title": "Minutes of physical activity in the last week (2022)",
+  "width": 240,
   "height": 200,
   "data": {
     "values": [
-      {"age": "15–17", "minutes": "0 min", "pct": 8.8},
-      {"age": "15–17", "minutes": "1–149 min", "pct": 15.6},
-      {"age": "15–17", "minutes": "150–300 min", "pct": 20.3},
-      {"age": "15–17", "minutes": "300+ min", "pct": 54.8},
-      {"age": "18–24", "minutes": "0 min", "pct": 6.3},
-      {"age": "18–24", "minutes": "1–149 min", "pct": 12.9},
-      {"age": "18–24", "minutes": "150–300 min", "pct": 16.4},
-      {"age": "18–24", "minutes": "300+ min", "pct": 64.9},
-      {"age": "25–34", "minutes": "0 min", "pct": 7.4},
-      {"age": "25–34", "minutes": "1–149 min", "pct": 15.6},
-      {"age": "25–34", "minutes": "150–300 min", "pct": 19.2},
-      {"age": "25–34", "minutes": "300+ min", "pct": 57.5},
-      {"age": "35–44", "minutes": "0 min", "pct": 9.1},
-      {"age": "35–44", "minutes": "1–149 min", "pct": 17.9},
-      {"age": "35–44", "minutes": "150–300 min", "pct": 20.1},
-      {"age": "35–44", "minutes": "300+ min", "pct": 53.1},
-      {"age": "45–54", "minutes": "0 min", "pct": 10.5},
-      {"age": "45–54", "minutes": "1–149 min", "pct": 15.9},
-      {"age": "45–54", "minutes": "150–300 min", "pct": 19.2},
-      {"age": "45–54", "minutes": "300+ min", "pct": 54.2},
-      {"age": "55–64", "minutes": "0 min", "pct": 12.9},
-      {"age": "55–64", "minutes": "1–149 min", "pct": 18.5},
-      {"age": "55–64", "minutes": "150–300 min", "pct": 17.7},
-      {"age": "55–64", "minutes": "300+ min", "pct": 50.8},
-      {"age": "65–74", "minutes": "0 min", "pct": 17.8},
-      {"age": "65–74", "minutes": "1–149 min", "pct": 17.8},
-      {"age": "65–74", "minutes": "150–300 min", "pct": 20.0},
-      {"age": "65–74", "minutes": "300+ min", "pct": 44.3},
+      {"age": "15-17", "minutes": "0 min", "pct": 8.8},
+      {"age": "15-17", "minutes": "1-149 min", "pct": 15.6},
+      {"age": "15-17", "minutes": "150-300 min", "pct": 20.3},
+      {"age": "15-17", "minutes": "300+ min", "pct": 54.8},
+      {"age": "18-24", "minutes": "0 min", "pct": 6.3},
+      {"age": "18-24", "minutes": "1-149 min", "pct": 12.9},
+      {"age": "18-24", "minutes": "150-300 min", "pct": 16.4},
+      {"age": "18-24", "minutes": "300+ min", "pct": 64.9},
+      {"age": "25-34", "minutes": "0 min", "pct": 7.4},
+      {"age": "25-34", "minutes": "1-149 min", "pct": 15.6},
+      {"age": "25-34", "minutes": "150-300 min", "pct": 19.2},
+      {"age": "25-34", "minutes": "300+ min", "pct": 57.5},
+      {"age": "35-44", "minutes": "0 min", "pct": 9.1},
+      {"age": "35-44", "minutes": "1-149 min", "pct": 17.9},
+      {"age": "35-44", "minutes": "150-300 min", "pct": 20.1},
+      {"age": "35-44", "minutes": "300+ min", "pct": 53.1},
+      {"age": "45-54", "minutes": "0 min", "pct": 10.5},
+      {"age": "45-54", "minutes": "1-149 min", "pct": 15.9},
+      {"age": "45-54", "minutes": "150-300 min", "pct": 19.2},
+      {"age": "45-54", "minutes": "300+ min", "pct": 54.2},
+      {"age": "55-64", "minutes": "0 min", "pct": 12.9},
+      {"age": "55-64", "minutes": "1-149 min", "pct": 18.5},
+      {"age": "55-64", "minutes": "150-300 min", "pct": 17.7},
+      {"age": "55-64", "minutes": "300+ min", "pct": 50.8},
+      {"age": "65-74", "minutes": "0 min", "pct": 17.8},
+      {"age": "65-74", "minutes": "1-149 min", "pct": 17.8},
+      {"age": "65-74", "minutes": "150-300 min", "pct": 20.0},
+      {"age": "65-74", "minutes": "300+ min", "pct": 44.3},
       {"age": "75+", "minutes": "0 min", "pct": 28.2},
-      {"age": "75+", "minutes": "1–149 min", "pct": 24.3},
-      {"age": "75+", "minutes": "150–300 min", "pct": 19.0},
+      {"age": "75+", "minutes": "1-149 min", "pct": 24.3},
+      {"age": "75+", "minutes": "150-300 min", "pct": 19.0},
       {"age": "75+", "minutes": "300+ min", "pct": 28.8}
     ]
   },
   "encoding": {
-    "x": {"field": "age", "type": "ordinal", "title": "Age group", "sort": null, "axis": {"labelAngle": 0}},
-    "y": {"field": "minutes", "type": "ordinal", "title": null,
-          "sort": ["300+ min", "150–300 min", "1–149 min", "0 min"]}
+    "x": {
+      "field": "age",
+      "type": "ordinal",
+      "title": "Age group",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "minutes",
+      "type": "ordinal",
+      "title": null,
+      "sort": ["300+ min", "150-300 min", "1-149 min", "0 min"]
+    }
   },
   "layer": [
     {
       "mark": {"type": "rect", "stroke": "white", "strokeWidth": 2},
       "encoding": {
-        "color": {"field": "pct", "type": "quantitative", "title": "% of age group",
-                  "scale": {"scheme": "blues"}},
+        "color": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% of age group",
+          "scale": {
+            "type": "threshold",
+            "domain": [15, 25, 40, 55],
+            "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+          }
+        },
         "tooltip": [
-          {"field": "age", "title": "Age"},
-          {"field": "minutes", "title": "Activity last week"},
-          {"field": "pct", "title": "% of age group", "format": ".1f"}
+          {"field": "age", "type": "nominal", "title": "Age group"},
+          {"field": "minutes", "type": "nominal", "title": "Activity last week"},
+          {"field": "pct", "type": "quantitative", "title": "% of age group", "format": ".1f"}
         ]
       }
     },
     {
       "mark": {"type": "text", "fontSize": 11},
       "encoding": {
-        "text": {"field": "pct", "format": ".0f"},
-        "color": {"condition": {"test": "datum.pct > 40", "value": "white"}, "value": "#333"}
+        "text": {"field": "pct", "type": "quantitative", "format": ".0f"},
+        "color": {
+          "condition": {"test": "datum.pct > 40", "value": "white"},
+          "value": "#333333"
+        }
       }
     }
-  ],
-  "config": {"view": {"stroke": null}, "axis": {"domain": false, "ticks": false}}
+  ]
 }

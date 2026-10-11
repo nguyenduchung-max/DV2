@@ -1,12 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Which states move the most?",
-    "subtitle": "Adults (15+) doing sport or physical activity at least 3 times a week, 2025",
-    "anchor": "start"
-  },
-  "width": 500,
-  "height": 420,
+  "title": "Adults active at least three times a week (2025)",
+  "width": 380,
+  "height": 320,
   "projection": {
     "type": "conicEqualArea",
     "rotate": [-134, 0],
@@ -22,37 +18,39 @@
       "from": {
         "data": {
           "values": [
-            {"state": "Australian Capital Territory", "abbr": "ACT", "rate2024": 58.2, "rate2025": 59.2},
-            {"state": "New South Wales", "abbr": "NSW", "rate2024": 47.3, "rate2025": 47.9},
-            {"state": "Northern Territory", "abbr": "NT", "rate2024": 50.4, "rate2025": 54.4},
-            {"state": "Queensland", "abbr": "QLD", "rate2024": 47.2, "rate2025": 49.6},
-            {"state": "South Australia", "abbr": "SA", "rate2024": 46.1, "rate2025": 48.6},
-            {"state": "Tasmania", "abbr": "TAS", "rate2024": 53.3, "rate2025": 51.3},
-            {"state": "Victoria", "abbr": "VIC", "rate2024": 49.7, "rate2025": 51.7},
-            {"state": "Western Australia", "abbr": "WA", "rate2024": 48.3, "rate2025": 52.5}
+            {"state": "Australian Capital Territory", "rate2024": 58.2, "rate2025": 59.2},
+            {"state": "New South Wales", "rate2024": 47.3, "rate2025": 47.9},
+            {"state": "Northern Territory", "rate2024": 50.4, "rate2025": 54.4},
+            {"state": "Queensland", "rate2024": 47.2, "rate2025": 49.6},
+            {"state": "South Australia", "rate2024": 46.1, "rate2025": 48.6},
+            {"state": "Tasmania", "rate2024": 53.3, "rate2025": 51.3},
+            {"state": "Victoria", "rate2024": 49.7, "rate2025": 51.7},
+            {"state": "Western Australia", "rate2024": 48.3, "rate2025": 52.5}
           ]
         },
         "key": "state",
-        "fields": ["abbr", "rate2024", "rate2025"]
+        "fields": ["rate2024", "rate2025"]
       }
     },
-    {"calculate": "datum.rate2025 - datum.rate2024", "as": "change"}
+    {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}
   ],
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
   "encoding": {
     "color": {
       "field": "rate2025",
       "type": "quantitative",
-      "title": "% active 3+ times/week",
-      "scale": {"scheme": "greens", "domain": [45, 60]},
-      "legend": {"orient": "bottom-left", "direction": "horizontal", "gradientLength": 160}
+      "title": "% active 3+ times a week",
+      "scale": {
+        "type": "threshold",
+        "domain": [48, 50, 52, 55],
+        "range": ["#edf8e9", "#bae4b3", "#74c476", "#31a354", "#006d2c"]
+      }
     },
     "tooltip": [
-      {"field": "properties.STATE_NAME", "title": "State"},
-      {"field": "rate2025", "title": "2025 (%)", "format": ".1f"},
-      {"field": "rate2024", "title": "2024 (%)", "format": ".1f"},
-      {"field": "change", "title": "Change (pts)", "format": "+.1f"}
+      {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
+      {"field": "rate2025", "type": "quantitative", "title": "2025 (%)", "format": ".1f"},
+      {"field": "rate2024", "type": "quantitative", "title": "2024 (%)", "format": ".1f"},
+      {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
     ]
-  },
-  "config": {"view": {"stroke": null}}
+  }
 }
