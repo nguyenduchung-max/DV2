@@ -55,53 +55,6 @@
           {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
         ]
       }
-    },
-    {
-      "data": {
-        "values": [
-          {"longitude": 149.1, "latitude": -35.3},
-          {"longitude": 151.2, "latitude": -33.9}
-        ]
-      },
-      "mark": {"type": "circle", "size": 45, "color": "#e6550d"},
-      "encoding": {
-        "longitude": {"field": "longitude", "type": "quantitative"},
-        "latitude": {"field": "latitude", "type": "quantitative"}
-      }
-    },
-    {
-      "data": {"values": [{"longitude": 149.1, "latitude": -35.3}]},
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -9,
-        "dy": 12,
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#e6550d",
-        "text": "ACT 59.2%, highest"
-      },
-      "encoding": {
-        "longitude": {"field": "longitude", "type": "quantitative"},
-        "latitude": {"field": "latitude", "type": "quantitative"}
-      }
-    },
-    {
-      "data": {"values": [{"longitude": 151.2, "latitude": -33.9}]},
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 9,
-        "dy": -10,
-        "fontSize": 11,
-        "fontWeight": 600,
-        "color": "#e6550d",
-        "text": "NSW 47.9%, lowest"
-      },
-      "encoding": {
-        "longitude": {"field": "longitude", "type": "quantitative"},
-        "latitude": {"field": "latitude", "type": "quantitative"}
-      }
     }
   ],
   "config": {"font": "Source Sans 3, sans-serif"}
