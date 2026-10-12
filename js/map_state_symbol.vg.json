@@ -10,9 +10,10 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "url": "data/states_abs.geojson",
         "format": {"type": "json", "property": "features"}
       },
+      "transform": [{"filter": "datum.properties.state_name_2021 != 'Other Territories' && datum.properties.state_name_2021 != 'Outside Australia'"}],
       "mark": {"type": "geoshape", "fill": "#eff3ff", "stroke": "white", "strokeWidth": 1}
     },
     {
