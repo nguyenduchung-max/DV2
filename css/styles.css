@@ -178,3 +178,24 @@ h3 {
   padding-left: 10px;
   margin: 12px 0 0 0;
 }
+
+/* ---------- sub-headings inside a section ---------- */
+/* h3 is also used for the side panels, which stay small, so the
+   full-width sub-headings get their own size. */
+
+h3.subhead {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+/* Keep the caption on the bottom edge of the card so the captions of two
+   cards in the same row line up even if their charts differ slightly. */
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.caption {
+  margin-top: auto;
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 330,
+  "height": 345,
   "data": {
     "values": [
       {"state": "NT", "name": "Northern Territory", "col": 1, "row": 0, "rate2024": 50.4, "rate2025": 54.4},
