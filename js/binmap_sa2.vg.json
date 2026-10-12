@@ -2,41 +2,55 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 348,
-  "data": {"url": "data/sa2_points_activity.csv"},
-  "mark": {"type": "rect", "stroke": "white", "strokeWidth": 0.4},
-  "encoding": {
-    "x": {
-      "field": "lon",
-      "type": "quantitative",
-      "bin": {"step": 0.8},
-      "title": null,
-      "scale": {"domain": [112, 154]},
-      "axis": {"labels": false, "ticks": false, "grid": false, "domain": false}
-    },
-    "y": {
-      "field": "lat",
-      "type": "quantitative",
-      "bin": {"step": 0.8},
-      "title": null,
-      "scale": {"domain": [-44, -9]},
-      "axis": {"labels": false, "ticks": false, "grid": false, "domain": false}
-    },
-    "color": {
-      "aggregate": "mean",
-      "field": "pct_met",
-      "type": "quantitative",
-      "title": "% meeting the guidelines",
-      "legend": {"orient": "bottom", "direction": "horizontal"},
-      "scale": {
-        "type": "threshold",
-        "domain": [18, 21, 24, 27],
-        "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
-      }
-    },
-    "tooltip": [
-      {"aggregate": "mean", "field": "pct_met", "type": "quantitative", "title": "Meeting guidelines (%)", "format": ".1f"},
-      {"aggregate": "count", "type": "quantitative", "title": "Small areas in this cell"}
-    ]
+  "projection": {
+    "type": "conicEqualArea",
+    "rotate": [-134, 0],
+    "parallels": [-18, -36]
   },
+  "layer": [
+    {
+      "data": {
+        "url": "data/states_abs.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#e8ebef", "stroke": "white", "strokeWidth": 1}
+    },
+    {
+      "data": {"url": "data/sa2_points_activity.csv"},
+      "transform": [
+        {"bin": {"step": 1.1}, "field": "lon", "as": "lon_bin"},
+        {"bin": {"step": 1.1}, "field": "lat", "as": "lat_bin"},
+        {
+          "aggregate": [
+            {"op": "mean", "field": "pct_met", "as": "avg_met"},
+            {"op": "count", "as": "areas"}
+          ],
+          "groupby": ["lon_bin", "lon_bin_end", "lat_bin", "lat_bin_end"]
+        },
+        {"calculate": "(datum.lon_bin + datum.lon_bin_end) / 2", "as": "lon_mid"},
+        {"calculate": "(datum.lat_bin + datum.lat_bin_end) / 2", "as": "lat_mid"}
+      ],
+      "mark": {"type": "square", "size": 150, "stroke": "white", "strokeWidth": 0.5},
+      "encoding": {
+        "longitude": {"field": "lon_mid", "type": "quantitative"},
+        "latitude": {"field": "lat_mid", "type": "quantitative"},
+        "color": {
+          "field": "avg_met",
+          "type": "quantitative",
+          "title": "% meeting the guidelines",
+          "legend": {"orient": "bottom", "direction": "horizontal"},
+          "scale": {
+            "type": "threshold",
+            "domain": [18, 21, 24, 27],
+            "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+          }
+        },
+        "tooltip": [
+          {"field": "avg_met", "type": "quantitative", "title": "Meeting guidelines (%)", "format": ".1f"},
+          {"field": "areas", "type": "quantitative", "title": "Small areas in this cell"}
+        ]
+      }
+    }
+  ],
   "config": {"font": "Source Sans 3, sans-serif", "view": {"stroke": null}}
 }
