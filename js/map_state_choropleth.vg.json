@@ -10,12 +10,13 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+        "url": "data/states_abs.geojson",
         "format": {"type": "json", "property": "features"}
       },
       "transform": [
+        {"filter": "datum.properties.state_name_2021 != 'Other Territories' && datum.properties.state_name_2021 != 'Outside Australia'"},
         {
-          "lookup": "properties.STATE_NAME",
+          "lookup": "properties.state_name_2021",
           "from": {
             "data": {
               "values": [
@@ -49,7 +50,7 @@
           }
         },
         "tooltip": [
-          {"field": "properties.STATE_NAME", "type": "nominal", "title": "State"},
+          {"field": "properties.state_name_2021", "type": "nominal", "title": "State"},
           {"field": "rate2025", "type": "quantitative", "title": "2025 (%)", "format": ".1f"},
           {"field": "rate2024", "type": "quantitative", "title": "2024 (%)", "format": ".1f"},
           {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
