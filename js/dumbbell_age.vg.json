@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": 300,
+  "height": 311,
   "data": {
     "values": [
       {"age": "15-17", "rate2024": 44.6, "rate2025": 53.1},
