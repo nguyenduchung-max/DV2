@@ -20,13 +20,16 @@
       "transform": [
         {"bin": {"step": 1.1}, "field": "lon", "as": "lon_bin"},
         {"bin": {"step": 1.1}, "field": "lat", "as": "lat_bin"},
+        {"calculate": "datum.pct_met * datum.population", "as": "weighted"},
         {
           "aggregate": [
-            {"op": "mean", "field": "pct_met", "as": "avg_met"},
+            {"op": "sum", "field": "weighted", "as": "weighted_sum"},
+            {"op": "sum", "field": "population", "as": "people"},
             {"op": "count", "as": "areas"}
           ],
           "groupby": ["lon_bin", "lon_bin_end", "lat_bin", "lat_bin_end"]
         },
+        {"calculate": "datum.weighted_sum / datum.people", "as": "avg_met"},
         {"calculate": "(datum.lon_bin + datum.lon_bin_end) / 2", "as": "lon_mid"},
         {"calculate": "(datum.lat_bin + datum.lat_bin_end) / 2", "as": "lat_mid"}
       ],
@@ -47,7 +50,8 @@
         },
         "tooltip": [
           {"field": "avg_met", "type": "quantitative", "title": "Meeting guidelines (%)", "format": ".1f"},
-          {"field": "areas", "type": "quantitative", "title": "Small areas in this cell"}
+          {"field": "areas", "type": "quantitative", "title": "Small areas in this cell"},
+          {"field": "people", "type": "quantitative", "title": "People represented", "format": ","}
         ]
       }
     }
