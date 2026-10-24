@@ -45,10 +45,10 @@
           "title": "Participants",
           "scale": {
             "type": "threshold",
-            "domain": [500000, 1500000, 3000000, 5000000],
-            "range": [80, 250, 600, 1100, 1800]
+            "domain": [1500000, 3000000, 4500000],
+            "range": [250, 750, 1250, 1750]
           },
-          "legend": {"orient": "bottom", "direction": "horizontal", "format": ".1s"}
+          "legend": {"orient": "bottom", "direction": "horizontal", "format": ".2s"}
         },
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},

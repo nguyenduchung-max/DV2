@@ -34,14 +34,18 @@
     {
       "calculate": "datum.state == 'ACT' ? 'ACT' : datum.state == 'NSW' ? 'NSW' : 'Other states'",
       "as": "highlight"
+    },
+    {
+      "calculate": "datum.level == 'At least once a year' ? 'Once a year' : datum.level == 'At least once a week' ? 'Once a week' : '3+ times a week'",
+      "as": "levelShort"
     }
   ],
   "encoding": {
     "x": {
-      "field": "level",
+      "field": "levelShort",
       "type": "ordinal",
       "title": null,
-      "sort": ["At least once a year", "At least once a week", "Three or more times a week"],
+      "sort": ["Once a year", "Once a week", "3+ times a week"],
       "scale": {"padding": 0.2},
       "axis": {"labelAngle": 0, "domain": false, "ticks": false, "labelFontSize": 12}
     },
@@ -64,9 +68,28 @@
     "detail": {"field": "state", "type": "nominal"}
   },
   "layer": [
-    {"mark": {"type": "line", "strokeWidth": 2.5, "opacity": 0.9}},
     {
+      "transform": [{"filter": "datum.highlight == 'Other states'"}],
+      "mark": {"type": "line", "strokeWidth": 2.5, "opacity": 0.9}
+    },
+    {
+      "transform": [{"filter": "datum.highlight == 'Other states'"}],
       "mark": {"type": "circle", "size": 70, "opacity": 1},
+      "encoding": {
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "level", "type": "nominal", "title": "Frequency"},
+          {"field": "rate", "type": "quantitative", "title": "% of adults", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.highlight != 'Other states'"}],
+      "mark": {"type": "line", "strokeWidth": 3, "opacity": 1}
+    },
+    {
+      "transform": [{"filter": "datum.highlight != 'Other states'"}],
+      "mark": {"type": "circle", "size": 95, "opacity": 1},
       "encoding": {
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},

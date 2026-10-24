@@ -31,20 +31,28 @@
         },
         {"calculate": "datum.weighted_sum / datum.people", "as": "avg_met"},
         {"calculate": "(datum.lon_bin + datum.lon_bin_end) / 2", "as": "lon_mid"},
-        {"calculate": "(datum.lat_bin + datum.lat_bin_end) / 2", "as": "lat_mid"}
+        {"calculate": "(datum.lat_bin + datum.lat_bin_end) / 2", "as": "lat_mid"},
+        {
+          "calculate": "datum.avg_met < 18 ? 'Under 18' : datum.avg_met < 21 ? '18 to 21' : datum.avg_met < 24 ? '21 to 24' : datum.avg_met < 27 ? '24 to 27' : '27 and above'",
+          "as": "band"
+        }
       ],
       "mark": {"type": "square", "size": 150, "stroke": "white", "strokeWidth": 0.5},
       "encoding": {
         "longitude": {"field": "lon_mid", "type": "quantitative"},
         "latitude": {"field": "lat_mid", "type": "quantitative"},
         "color": {
-          "field": "avg_met",
-          "type": "quantitative",
+          "field": "band",
+          "type": "ordinal",
           "title": "% meeting the guidelines",
-          "legend": {"orient": "bottom", "direction": "horizontal"},
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 170
+          },
           "scale": {
-            "type": "threshold",
-            "domain": [18, 21, 24, 27],
+            "domain": ["Under 18", "18 to 21", "21 to 24", "24 to 27", "27 and above"],
             "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
           }
         },

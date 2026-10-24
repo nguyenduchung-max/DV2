@@ -54,16 +54,26 @@
   },
   "layer": [
     {
+      "transform": [
+        {
+          "calculate": "datum.pct < 15 ? 'Under 15' : datum.pct < 30 ? '15 to 30' : datum.pct < 45 ? '30 to 45' : datum.pct < 60 ? '45 to 60' : '60 and above'",
+          "as": "band"
+        }
+      ],
       "mark": {"type": "rect", "stroke": "white", "strokeWidth": 2},
       "encoding": {
         "color": {
-          "field": "pct",
-          "type": "quantitative",
+          "field": "band",
+          "type": "ordinal",
           "title": "% of age group",
-          "legend": {"orient": "bottom", "direction": "horizontal"},
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 170
+          },
           "scale": {
-            "type": "threshold",
-            "domain": [15, 25, 40, 55],
+            "domain": ["Under 15", "15 to 30", "30 to 45", "45 to 60", "60 and above"],
             "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
           }
         },
@@ -79,7 +89,7 @@
       "encoding": {
         "text": {"field": "pct", "type": "quantitative", "format": ".0f"},
         "color": {
-          "condition": {"test": "datum.pct > 40", "value": "white"},
+          "condition": {"test": "datum.pct >= 45", "value": "white"},
           "value": "#333333"
         }
       }

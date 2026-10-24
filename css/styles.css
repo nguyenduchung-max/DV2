@@ -108,6 +108,19 @@ h3 {
   margin-bottom: 0px;
 }
 
+/* ---------- bullet lists in the narrative ---------- */
+/* One idea per line. Keeps the written content on the page without
+   making the reader work through a block of prose. */
+
+ul.points {
+  margin: 0 0 4px 0;
+  padding-left: 20px;
+}
+
+ul.points li {
+  margin-bottom: 7px;
+}
+
 .description-right {
   padding-left: 20px;
 }

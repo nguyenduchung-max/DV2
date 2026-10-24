@@ -34,19 +34,27 @@
             "fields": ["rate2024", "rate2025"]
           }
         },
-        {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"}
+        {"calculate": "datum.rate2025 - datum.rate2024", "as": "Change"},
+        {
+          "calculate": "datum.rate2025 < 50 ? 'Under 50' : datum.rate2025 < 53 ? '50 to 53' : datum.rate2025 < 56 ? '53 to 56' : '56 and above'",
+          "as": "band"
+        }
       ],
       "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
       "encoding": {
         "color": {
-          "field": "rate2025",
-          "type": "quantitative",
+          "field": "band",
+          "type": "ordinal",
           "title": "% active 3+ times a week",
-          "legend": {"orient": "bottom", "direction": "horizontal"},
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolType": "square",
+            "symbolSize": 170
+          },
           "scale": {
-            "type": "threshold",
-            "domain": [48, 50, 52, 55],
-            "range": ["#eff3ff", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+            "domain": ["Under 50", "50 to 53", "53 to 56", "56 and above"],
+            "range": ["#eff3ff", "#9ecae1", "#4292c6", "#08519c"]
           }
         },
         "tooltip": [
@@ -55,6 +63,45 @@
           {"field": "rate2024", "type": "quantitative", "title": "2024 (%)", "format": ".1f"},
           {"field": "Change", "type": "quantitative", "title": "Change (pts)", "format": "+.1f"}
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"lon": 147.5, "lat": -42.3, "lon2": 149.9, "lat2": -42.3},
+          {"lon": 149.1, "lat": -35.5, "lon2": 152.3, "lat2": -35.5}
+        ]
+      },
+      "mark": {"type": "rule", "stroke": "#8d9aa5", "strokeWidth": 0.8},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude2": {"field": "lon2"},
+        "latitude2": {"field": "lat2"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"abbr": "WA",  "lon": 121.5, "lat": -25.5, "onDark": false},
+          {"abbr": "NT",  "lon": 133.5, "lat": -20.5, "onDark": true},
+          {"abbr": "SA",  "lon": 135.5, "lat": -29.5, "onDark": false},
+          {"abbr": "QLD", "lon": 144.5, "lat": -22.5, "onDark": false},
+          {"abbr": "NSW", "lon": 146.5, "lat": -32.0, "onDark": false},
+          {"abbr": "VIC", "lon": 144.3, "lat": -36.8, "onDark": false},
+          {"abbr": "TAS", "lon": 150.6, "lat": -42.3, "onDark": false},
+          {"abbr": "ACT", "lon": 153.0, "lat": -35.5, "onDark": false}
+        ]
+      },
+      "mark": {"type": "text", "fontSize": 11, "fontWeight": 600},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "abbr", "type": "nominal"},
+        "color": {
+          "condition": {"test": "datum.onDark", "value": "white"},
+          "value": "#2b3a4a"
+        }
       }
     }
   ],
