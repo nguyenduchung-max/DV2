@@ -201,14 +201,17 @@ h3.subhead {
   margin-bottom: 6px;
 }
 
-/* Keep the caption on the bottom edge of the card so the captions of two
-   cards in the same row line up even if their charts differ slightly. */
+/* Pin the note and the caption together to the bottom edge of the card.
+   Two charts in the same row rarely finish at the same height, so
+   anchoring the whole text block rather than just the caption keeps the
+   notes on one line as well, and stops a one-line note from floating in
+   the gap above its caption. */
 
 .card {
   display: flex;
   flex-direction: column;
 }
 
-.caption {
+.note {
   margin-top: auto;
 }
